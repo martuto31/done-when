@@ -94,13 +94,6 @@ back to commits they can trust. Also anyone who has watched an agent "fix" a fai
 It fits less well where every change goes through a pull request (done-when commits on a working branch and you push),
 or on a quick prototype where tests aren't worth writing yet.
 
-## In practice
-
-Built for a production SaaS (Spring Boot and Angular) that one person runs alongside a day job. In eight days of
-late October 2026 the agents shipped 47 tasks. Three were parked after failing their check twice, for a person to
-look at. One day's end check found four problems; they became fix tasks and shipped the same day. done-when was also
-set up unaided on two other projects, one with tests and one without.
-
 ## Everyday use
 
 | You | What happens |
