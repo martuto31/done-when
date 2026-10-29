@@ -60,7 +60,7 @@ Top unblocked one. One per tick, never two.
    - browser tests the task added or changed: `{{E2E_ONE, e.g. npx playwright test e2e/<file>.spec.ts}}` → `.verify/<id>-e2e.txt`
    The whole suites run at the end check, not per task.
 5. **Stop at READY.** Don't commit. Reply `READY <id> · <title>`, the Done when lines verbatim, and
-   `Saved runs: <paths>`. Under `/work` the dispatcher starts the verifier. By hand: start a fresh `verifier` agent
+   `Saved runs: <paths>`. Under `/done-when:work` the dispatcher starts the verifier. By hand: start a fresh `verifier` agent
    yourself with only the Done when lines and the saved-run paths, never your reasoning.
 6. **PASS** → commit (§5). `PASS · NOTES` → fix the notes, then commit, no new check. **FAIL** → fix, READY again,
    once. A second FAIL → park.

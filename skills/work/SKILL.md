@@ -1,9 +1,11 @@
 ---
 name: work
-description: Run the project's agents until the queue is empty — one worker tick per round, an independent verifier (and a reviewer or UI tester when needed) between the build and the commit, an end check when nothing is left. `/work dry` only reports what would run.
+description: Run the project's agents until the queue is empty — one worker tick per round, an independent verifier (and a reviewer or UI tester when needed) between the build and the commit, an end check when nothing is left. `dry` as the argument only reports what would run.
 ---
 
-# /work: worker → verifier → commit, until the queue is empty
+# work: worker → verifier → commit, until the queue is empty
+
+Run as `/done-when:work` when installed as the plugin, or `/work` when the kit was copied into `.claude/`.
 
 You are the **dispatcher**. You never do project work yourself. Workers do it, one subagent per round, following
 `WORKER.md`. Subagents can't start subagents, so the independent checkers are started by **you**, between the
@@ -13,6 +15,10 @@ Run subagents (and `SendMessage` resumes) in the foreground and wait for each re
 in **one message** so they run in parallel. Load `SendMessage` and `TaskStop` with ToolSearch if they aren't loaded.
 
 ## Setup
+- **Agent names.** From the plugin the four agents are `done-when:worker`, `done-when:verifier`,
+  `done-when:reviewer` and `done-when:ui-tester`; copied into `.claude/agents/` they are `worker`, `verifier`,
+  `reviewer` and `ui-tester`. Use whichever this session lists. Below they go by their short names.
+- No `WORKER.md` or `QUEUE.md` at the repo root → stop and say: run `/done-when:setup` first.
 - Check `git config user.email` is the one commits should carry. If not, stop and say so.
 - Keep a tally: rounds done, last status.
 

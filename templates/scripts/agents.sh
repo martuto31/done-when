@@ -1,5 +1,5 @@
 #!/bin/sh
-# Optional: runs /work in the background until the queue is empty, and starts it again after a usage limit or a
+# Optional: runs the work command in the background until the queue is empty, and starts it again after a usage limit or a
 # crash. From the repo root:
 #   sh scripts/agents.sh          start (detached; closing the terminal doesn't stop it)
 #   sh scripts/agents.sh log      watch
@@ -9,6 +9,8 @@
 # deny rules in .claude/settings.json hold in every mode: no push, no deploy, no .env. Add your own deploy commands
 # there.
 cd "$(git rev-parse --show-toplevel)" || exit 1
+# The plugin's command; a kit copied into .claude/ by hand uses "/work".
+WORK_COMMAND="/done-when:work"
 RUNLOG=.verify/agents-runner.log
 LAST=.verify/agents-last.txt
 PIDFILE=.verify/agents.pid
@@ -30,7 +32,7 @@ crashes=0
 for attempt in $(seq 1 30); do
   rm -f .agents-summary.md
   echo "agents: run $attempt started $(date '+%a %H:%M')" | tee "$LAST"
-  claude -p "/work" --permission-mode auto 2>&1 | tee -a "$LAST"
+  claude -p "$WORK_COMMAND" --permission-mode auto 2>&1 | tee -a "$LAST"
   if [ -s .agents-summary.md ] && ! grep -qi 'usage limit' .agents-summary.md; then
     echo "agents: finished $(date '+%a %H:%M')"; exit 0
   fi

@@ -1,0 +1,10 @@
+{
+  "name": "done-when",
+  "displayName": "Done when",
+  "version": "0.1.0",
+  "description": "Rough to-dos in, verified commits out. Each task gets testable Done when lines and failing tests first; a second agent that never saw how it was built decides whether it ships.",
+  "author": { "name": "Martin Petrov" },
+  "repository": "https://github.com/martuto31/done-when",
+  "license": "MIT",
+  "keywords": ["workflow", "tdd", "spec-driven-development", "verification", "subagents", "code-review", "autonomous-agents", "task-queue"]
+}

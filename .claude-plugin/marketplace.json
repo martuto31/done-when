@@ -1,0 +1,14 @@
+{
+  "name": "done-when",
+  "owner": {
+    "name": "Martin Petrov"
+  },
+  "description": "done-when: a Claude Code workflow that turns a queue of rough to-dos into tested commits, each one checked by a second agent that never saw how it was built.",
+  "plugins": [
+    {
+      "name": "done-when",
+      "source": "./",
+      "description": "Rough to-dos in, verified commits out: a queue, tests first, and a blind second agent that decides whether each task ships."
+    }
+  ]
+}

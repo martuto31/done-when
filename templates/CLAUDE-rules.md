@@ -10,7 +10,7 @@
 - Only the local test database. Never write to a real one.
 - **How work runs:** `WORKER.md`. One task at a time: Done when lines first, tests first (they must fail), build,
   then a separate verifier that never saw the builder's reasoning; a reviewer too when the diff changes who sees
-  data, money or sign-in. Then one commit with its records. `/work` runs that loop until the queue is empty.
+  data, money or sign-in. Then one commit with its records. `/done-when:work` runs that loop until the queue is empty.
 - **The agent that builds a change never checks it.** A diff that deletes, skips or loosens a test the task didn't
   ask to change fails, whatever else it does.
 - **Replies to the owner:** short, plain words, no task ids to remember; detail goes into files. Decide reversible
