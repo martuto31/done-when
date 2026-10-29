@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(git push:*)",
+      "Bash(git push)",
+      "Bash(git commit --no-verify*)",
+      "Bash(git commit * --no-verify*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean*)",
+      "Bash(firebase deploy*)",
+      "Bash(npx firebase*)",
+      "Bash(npm run deploy*)",
+      "Bash(vercel*)",
+      "Bash(netlify deploy*)",
+      "Bash(fly deploy*)",
+      "Bash(railway up*)",
+      "Bash(kubectl*)",
+      "Bash(terraform apply*)",
+      "Bash(cat *.env*)",
+      "Bash(grep * *.env*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)",
+      "Bash(pkill*)",
+      "Bash(killall*)",
+      "Bash(xargs kill*)"
+    ]
+  }
+}

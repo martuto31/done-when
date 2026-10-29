@@ -1,0 +1,37 @@
+#!/bin/sh
+# Stops a staged secret, then checks the commit title: Conventional Commits, "type(scope): subject" in at most 72
+# characters (docs/CONVENTIONS.md §1). Git's own messages pass: merges, reverts, fixup!/squash!/amend!.
+# Installed by scripts/install-hooks.sh.
+msg_file="$1"
+
+# Secrets first: gitleaks reads only what is staged, so a key never reaches a commit. Skipped where gitleaks isn't
+# installed (brew install gitleaks). A test value it flags gets gitleaks:allow in a comment on the same line.
+if command -v gitleaks >/dev/null 2>&1; then
+  if ! gitleaks git --pre-commit --staged --redact --verbose --no-banner --log-level warn >&2; then
+    echo "gitleaks found a secret in the staged changes (redacted above): remove it, or mark a test value gitleaks:allow." >&2
+    exit 1
+  fi
+fi
+
+title=$(grep -v '^#' "$msg_file" | sed -n '1p')
+
+case "$title" in
+  "Merge "*|"Revert "*|"fixup! "*|"squash! "*|"amend! "*) exit 0 ;;
+esac
+
+# Characters, not bytes, so titles in other alphabets count right.
+length=$(printf '%s' "$title" | LC_ALL=en_US.UTF-8 wc -m | tr -d ' ')
+
+if printf '%s\n' "$title" | grep -Eq '^(feat|fix|perf|refactor|style|test|docs|build|ci|chore|revert)(\([a-z0-9-]+\))?!?: [^ ].*[^.]$' \
+  && [ "$length" -le 72 ]; then
+  exit 0
+fi
+
+cat >&2 <<'MSG'
+Commit title must look like:  fix(checkout): a second click no longer charges twice
+Types: feat, fix, perf, refactor, style, test, docs, build, ci, chore, revert; scope optional, lower case.
+The subject has no full stop, and the whole title is at most 72 characters.
+Then an empty line, a short story, Changes / Decisions / Tests, and the trailers Task: / Refs: / Pair:.
+Rules: docs/CONVENTIONS.md §1.
+MSG
+exit 1
