@@ -9,6 +9,10 @@ A Claude Code plugin that works through a queue while you're away. Every task ge
 failing tests before any code. Then a second agent, which sees only those lines and the diff, decides whether it
 ships. You come back to commits you can trust, and to questions only you can answer.
 
+![A real run: one rough line in QUEUE.md, /done-when:work, failing tests first, a verifier checks each Done when line, then one commit](docs/demo.gif)
+
+*A real run on a tiny project, about three minutes shown in 45 seconds: one rough line in the queue, one command, one checked commit.*
+
 ## Install
 
 ```
