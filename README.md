@@ -138,6 +138,11 @@ only the Done when lines and `git diff`, and answers PASS or FAIL. `agents/` and
 
 [`docs/WORKFLOW.md`](docs/WORKFLOW.md) explains each step and why it exists.
 
+## Privacy
+
+No server, no account, no telemetry: the plugin sends nothing anywhere. The [privacy policy](PRIVACY.md) says what it
+reads and writes.
+
 ## License
 
 [MIT](LICENSE)
