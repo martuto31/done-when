@@ -131,23 +131,8 @@ cheaper model with a lighter check, and the whole suites run once at the end, no
 
 ## Without the plugin
 
-The kit also works copied into a project. In the project's folder:
-
-```bash
-git clone --depth 1 https://github.com/martuto31/done-when .done-when
-```
-
-Then paste this into Claude Code:
-
-```
-Set up the workflow in .done-when/ for this project. Follow .done-when/skills/setup/SKILL.md, where
-${CLAUDE_PLUGIN_ROOT} means .done-when. Also copy .done-when/agents/ into .claude/agents/ and
-.done-when/skills/work/ into .claude/skills/work/. The command is then /work: write /work wherever the
-copied files say /done-when:work. Remove .done-when/ at the end.
-```
-
 With another coding agent, run the loop by hand: one session builds and stops at READY; a second, fresh session gets
-only the Done when lines and `git diff`, and answers PASS or FAIL.
+only the Done when lines and `git diff`, and answers PASS or FAIL. `agents/` and `skills/work/` say what each one reads.
 
 ## The method
 
